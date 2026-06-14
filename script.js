@@ -5,26 +5,227 @@
    ============================================================= */
 
 /* -------------------------------------------------------------
-   Transparent navigation while the hero is in view.
-   Adds the `nav-transparent` class to <body> when the hero
-   occupies enough of the viewport, letting the fixed header
-   blend over it; removes it otherwise.
+   Projects — rendered from the shared `projects` array (projects.js),
+   which is the single source of truth for both the homepage card
+   grid and the project.html detail page.
    ------------------------------------------------------------- */
-function initNavTransparency() {
-  const hero = document.querySelector('.centam-hero');
-  if (!hero) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const heroInView = entry.isIntersecting && entry.intersectionRatio > 0.4;
-        document.body.classList.toggle('nav-transparent', heroInView);
+/* Build the detail-page URL for a given project id. */
+function projectUrl(id) {
+  return `project.html?id=${encodeURIComponent(id)}`;
+}
+
+/* Homepage: render one card per project into #projects-grid.
+   Markup mirrors the original static card exactly, with a working
+   "Read More" link. textContent is used so titles/descriptions
+   containing characters like & are escaped automatically. */
+function renderProjectCards() {
+  const grid = document.getElementById('projects-grid');
+  if (!grid || typeof projects === 'undefined') return;
+
+  grid.innerHTML = '';
+
+  projects.forEach((project) => {
+    const card = document.createElement('div');
+    card.className = 'centam-card';
+
+    const media = document.createElement('div');
+    media.className = 'img-placeholder card-media card-media--project';
+    media.textContent = project.media || '';
+
+    const tag = document.createElement('span');
+    tag.className = 'category-tag';
+    tag.textContent = project.category || '';
+
+    const title = document.createElement('h3');
+    title.textContent = project.title;
+
+    const excerpt = document.createElement('p');
+    excerpt.textContent = project.excerpt || '';
+
+    const linkWrap = document.createElement('p');
+    const link = document.createElement('a');
+    link.href = projectUrl(project.id);
+    link.textContent = 'Read More →';
+    linkWrap.appendChild(link);
+
+    card.append(media, tag, title, excerpt, linkWrap);
+    grid.appendChild(card);
+  });
+}
+
+/* Detail page: populate #project-detail from the ?id= query param. */
+function renderProjectDetail() {
+  const root = document.getElementById('project-detail');
+  if (!root || typeof projects === 'undefined') return;
+
+  const requestedId = new URLSearchParams(window.location.search).get('id');
+  const project = projects.find((item) => item.id === requestedId);
+
+  const categoryEl = document.getElementById('project-category');
+  const titleEl = document.getElementById('project-title');
+  const mediaEl = document.getElementById('project-media');
+  const bodyEl = document.getElementById('project-body');
+  const metaEl = document.getElementById('project-meta');
+
+  // Unknown or missing id — show a friendly fallback, never a blank page.
+  if (!project) {
+    document.title = 'Project not found | CENTAM';
+    if (categoryEl) categoryEl.remove();
+    if (mediaEl) mediaEl.remove();
+    if (metaEl) metaEl.remove();
+    titleEl.textContent = 'Project not found';
+    bodyEl.innerHTML = '';
+    const message = document.createElement('p');
+    message.textContent = 'Sorry, we could not find that project. Use the link above to return to the projects overview.';
+    bodyEl.appendChild(message);
+    return;
+  }
+
+  document.title = `${project.title} | CENTAM`;
+  if (categoryEl) categoryEl.textContent = project.category || '';
+  titleEl.textContent = project.title;
+  if (mediaEl) mediaEl.textContent = project.media || '';
+
+  // Body copy — fall back to the card excerpt when no long-form body exists.
+  const paragraphs = project.body && project.body.length ? project.body : [project.excerpt];
+  bodyEl.innerHTML = '';
+  paragraphs.forEach((text) => {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = text;
+    bodyEl.appendChild(paragraph);
+  });
+
+  // Optional meta facts — reuse the existing values-grid / value-item styles.
+  if (metaEl) {
+    if (project.meta && project.meta.length) {
+      metaEl.innerHTML = '';
+      project.meta.forEach((fact) => {
+        const item = document.createElement('div');
+        item.className = 'value-item';
+        const label = document.createElement('h4');
+        label.textContent = fact.label;
+        const value = document.createElement('p');
+        value.textContent = fact.value;
+        item.append(label, value);
+        metaEl.appendChild(item);
       });
-    },
-    { threshold: [0, 0.4, 1] }
-  );
+    } else {
+      metaEl.remove();
+    }
+  }
+}
 
-  observer.observe(hero);
+/* -------------------------------------------------------------
+   News — rendered from the shared `newsArticles` array (news.js),
+   the single source of truth for the homepage news preview, the
+   full listing (news.html) and the article page (news-article.html).
+   ------------------------------------------------------------- */
+
+/* Build the article-page URL for a given article id. */
+function newsUrl(id) {
+  return `news-article.html?id=${encodeURIComponent(id)}`;
+}
+
+/* Render news cards into #news-grid. Markup mirrors the original
+   static card exactly (media, tag, title, excerpt, date · Read More).
+   An optional `data-limit` on the grid caps how many cards show — the
+   homepage uses it to keep its 3-card preview, while news.html omits
+   it to list everything. The whole card is clickable; the inner
+   "Read More" <a> stays as the keyboard-accessible link. */
+function renderNewsCards() {
+  const grid = document.getElementById('news-grid');
+  if (!grid || typeof newsArticles === 'undefined') return;
+
+  const limit = parseInt(grid.dataset.limit, 10);
+  const articles = Number.isInteger(limit) ? newsArticles.slice(0, limit) : newsArticles;
+
+  grid.innerHTML = '';
+
+  articles.forEach((article) => {
+    const url = newsUrl(article.id);
+
+    const card = document.createElement('div');
+    card.className = 'centam-card';
+
+    const media = document.createElement('div');
+    media.className = 'img-placeholder card-media card-media--news';
+    media.textContent = article.media || '';
+
+    const tag = document.createElement('span');
+    tag.className = 'category-tag';
+    tag.textContent = article.category || '';
+
+    const title = document.createElement('h3');
+    title.textContent = article.title;
+
+    const excerpt = document.createElement('p');
+    excerpt.textContent = article.excerpt || '';
+
+    const footer = document.createElement('p');
+    const date = document.createElement('small');
+    date.textContent = article.date || '';
+    const link = document.createElement('a');
+    link.href = url;
+    link.textContent = 'Read More →';
+    footer.append(date, document.createTextNode(' · '), link);
+
+    card.append(media, tag, title, excerpt, footer);
+
+    // Whole-card click opens the article; clicks on real links (the
+    // "Read More" anchor) are left to navigate on their own.
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      window.location.href = url;
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+/* Article page: populate #news-detail from the ?id= query param. */
+function renderNewsDetail() {
+  const root = document.getElementById('news-detail');
+  if (!root || typeof newsArticles === 'undefined') return;
+
+  const requestedId = new URLSearchParams(window.location.search).get('id');
+  const article = newsArticles.find((item) => item.id === requestedId);
+
+  const categoryEl = document.getElementById('news-category');
+  const dateEl = document.getElementById('news-date');
+  const titleEl = document.getElementById('news-title');
+  const mediaEl = document.getElementById('news-media');
+  const bodyEl = document.getElementById('news-body');
+
+  // Unknown or missing id — show a friendly fallback, never a blank page.
+  if (!article) {
+    document.title = 'Article not found | CENTAM';
+    if (categoryEl) categoryEl.remove();
+    if (dateEl) dateEl.remove();
+    if (mediaEl) mediaEl.remove();
+    titleEl.textContent = 'Article not found';
+    bodyEl.innerHTML = '';
+    const message = document.createElement('p');
+    message.textContent = 'Sorry, we could not find that article. Use the link above to return to the news overview.';
+    bodyEl.appendChild(message);
+    return;
+  }
+
+  document.title = `${article.title} | CENTAM`;
+  if (categoryEl) categoryEl.textContent = article.category || '';
+  if (dateEl) dateEl.textContent = article.date || '';
+  titleEl.textContent = article.title;
+  if (mediaEl) mediaEl.textContent = article.media || '';
+
+  // Body copy — fall back to the card excerpt when no long-form body exists.
+  const paragraphs = article.body && article.body.length ? article.body : [article.excerpt];
+  bodyEl.innerHTML = '';
+  paragraphs.forEach((text) => {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = text;
+    bodyEl.appendChild(paragraph);
+  });
 }
 
 /* -------------------------------------------------------------
@@ -65,7 +266,10 @@ function initContactForm() {
    Boot
    ------------------------------------------------------------- */
 function init() {
-  initNavTransparency();
+  renderProjectCards();
+  renderProjectDetail();
+  renderNewsCards();
+  renderNewsDetail();
   initFadeIn();
   initContactForm();
 }

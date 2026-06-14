@@ -46,9 +46,10 @@
         <div class="centam-eyebrow">From design to customized production via 3D printing</div>
         <h1>Engineering the Next Generation of Si-SiC Components</h1>
         <p>With over 30 years of combined experience in additive manufacturing, CENTAM develops and post-processes advanced Si-SiC parts for critical industrial sectors.</p>
-        <a href="#contact" class="centam-button">Get In Touch</a>
-        &nbsp;&nbsp;
-        <a href="#about" class="centam-button-ghost">Learn More ↓</a>
+        <div class="hero-actions">
+          <a href="#contact" class="centam-button">Get In Touch</a>
+          <a href="#about" class="centam-button centam-button-ghost">Learn More ↓</a>
+        </div>
       </div>
     </section>
 
@@ -113,6 +114,9 @@
 
     <!-- ========================================================
          PROJECTS — Cream
+         Cards are rendered from the shared `projects` data
+         (projects.js) by renderProjectCards() in script.js.
+         Add a project there and a card appears automatically.
          ======================================================== -->
     <section class="centam-section centam-section-light" id="projects">
       <div class="centam-container">
@@ -122,15 +126,7 @@
           <h2>Projects &amp; Case Studies</h2>
           <p>A snapshot of recent engagements across different industrial sectors.</p>
         </div>
-        <div class="centam-card-grid">
-          <div class="centam-card">
-            <div class="img-placeholder card-media card-media--project">Industrial kiln</div>
-            <span class="category-tag">Thermal Management</span>
-            <h3>Graded Gyroid Architectures for Enhanced Heat Sink Performance</h3>
-            <p>Spatially engineered TPMS structure with decreasing cell size and 2 mm wall thickness for optimized thermal and fluid transport behavior.</p>
-            <p><a href="#">Read More →</a></p>
-          </div>
-        </div>
+        <div class="centam-card-grid" id="projects-grid"></div>
       </div>
     </section>
 
@@ -230,31 +226,13 @@
           <div class="centam-eyebrow">Latest News</div>
           <h2>News &amp; Updates</h2>
         </div>
-        <div class="centam-card-grid">
-          <div class="centam-card">
-            <div class="img-placeholder card-media card-media--news">Launch</div>
-            <span class="category-tag">Announcements</span>
-            <h3>CENTAM Officially Launches</h3>
-            <p>A new materials science and engineering company opens its doors to industrial partners across Europe.</p>
-            <p><small>May 2025</small> · <a href="#">Read More →</a></p>
-          </div>
-          <div class="centam-card">
-            <div class="img-placeholder card-media card-media--news">Sintering kiln</div>
-            <span class="category-tag">Research Updates</span>
-            <h3>Understanding Ceramic Sintering</h3>
-            <p>The single most important step in ceramic manufacturing happens in the furnace. Here's what it actually does.</p>
-            <p><small>May 2025</small> · <a href="#">Read More →</a></p>
-          </div>
-          <div class="centam-card">
-            <div class="img-placeholder card-media card-media--news">Conference</div>
-            <span class="category-tag">Industry News</span>
-            <h3>Key Takeaways from the Advanced Materials Summit</h3>
-            <p>Notes from the show floor, three trends worth watching, and the conversations that mattered most.</p>
-            <p><small>May 2025</small> · <a href="#">Read More →</a></p>
-          </div>
-        </div>
+        <!-- Cards are rendered from the shared `newsArticles` data
+             (news.js) by renderNewsCards() in script.js. data-limit
+             keeps this homepage preview to the latest 3; news.html
+             lists them all. -->
+        <div class="centam-card-grid" id="news-grid" data-limit="3"></div>
         <div class="news-cta">
-          <a href="#" class="centam-button">Read All News →</a>
+          <a href="news.html" class="centam-button">Read All News →</a>
         </div>
       </div>
     </section>
@@ -324,10 +302,9 @@
     </div>
   </footer>
 
-  <!-- Preview-only ribbon -->
-  <div class="preview-banner">Preview — design mock-up · real logo from brand pack</div>
-
-  <!-- Site scripts -->
+  <!-- Site scripts (data files load first, then behavior) -->
+  <script src="projects.js"></script>
+  <script src="news.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
