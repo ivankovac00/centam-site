@@ -263,6 +263,45 @@ function initContactForm() {
 }
 
 /* -------------------------------------------------------------
+   Mobile navigation.
+   Drives the hamburger toggle (.nav-toggle) that collapses the
+   header link row (#primary-nav) into a slide-down panel below
+   980px. Pure show/hide — all positioning lives in the CSS.
+   ------------------------------------------------------------- */
+function initMobileNav() {
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('primary-nav');
+  if (!toggle || !menu) return;
+
+  const setOpen = (open) => {
+    toggle.classList.toggle('is-open', open);
+    menu.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
+
+  toggle.addEventListener('click', () => {
+    setOpen(!menu.classList.contains('is-open'));
+  });
+
+  // Tapping a link navigates and closes the panel.
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setOpen(false);
+  });
+
+  // Escape closes it.
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setOpen(false);
+  });
+
+  // Returning to the desktop layout resets state so the panel can't
+  // stay "open" once the links are inline again.
+  const desktop = window.matchMedia('(min-width: 981px)');
+  desktop.addEventListener('change', (event) => {
+    if (event.matches) setOpen(false);
+  });
+}
+
+/* -------------------------------------------------------------
    Boot
    ------------------------------------------------------------- */
 function init() {
@@ -272,6 +311,7 @@ function init() {
   renderNewsDetail();
   initFadeIn();
   initContactForm();
+  initMobileNav();
 }
 
 if (document.readyState === 'loading') {

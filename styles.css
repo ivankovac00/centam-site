@@ -16,13 +16,13 @@
    ------------------------------------------------------------- */
 :root {
   /* Palette — 7 approved colors only */
-  --centam-near-black: #151E22;
-  --centam-dark-green: #1F3A3D;
-  --centam-green: #2E4F4B;
-  --centam-light-green: #3A6F6B;
-  --centam-mint: #A9B7B4;
-  --centam-cream: #E6ECEA;
-  --centam-maroon: #6A4D6A;
+  --centam-near-black: #151e22;
+  --centam-dark-green: #1f3a3d;
+  --centam-green: #2e4f4b;
+  --centam-light-green: #3a6f6b;
+  --centam-mint: #a9b7b4;
+  --centam-cream: #e6ecea;
+  --centam-maroon: #6a4d6a;
 
   /* Semantic aliases */
   --bg-primary: var(--centam-near-black);
@@ -35,8 +35,8 @@
   --accent: var(--centam-maroon);
 
   /* Typography */
-  --font-heading: 'Barlow Condensed', sans-serif;
-  --font-body: 'Roboto', sans-serif;
+  --font-heading: "Barlow Condensed", sans-serif;
+  --font-body: "Roboto", sans-serif;
 
   /* Spacing rhythm */
   --section-padding-y-desktop: 120px;
@@ -75,14 +75,33 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Long words / URLs wrap instead of forcing horizontal scroll on narrow
+     screens (e.g. the contact LinkedIn URL, footer links). */
+  overflow-wrap: break-word;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
+/* Images never exceed their container — without this, a picture wider than
+   the viewport (e.g. the About gyroid render) forces its grid track wide and
+   pushes the whole page into horizontal overflow on mobile. More specific
+   rules (nav/footer logos, team photos) still win their own sizing. */
+img {
+  max-width: 100%;
+  height: auto;
+}
 
 /* -------------------------------------------------------------
    4. TYPOGRAPHY
    ------------------------------------------------------------- */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .wp-block-heading {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -92,14 +111,16 @@ h1, h2, h3, h4, h5, h6,
   margin: 0 0 0.6em;
 }
 
-h1, .wp-block-heading.is-style-h1 {
+h1,
+.wp-block-heading.is-style-h1 {
   font-size: clamp(40px, 6vw, 80px);
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: none;
 }
 
-h2, .wp-block-heading.is-style-h2 {
+h2,
+.wp-block-heading.is-style-h2 {
   font-size: clamp(32px, 4.2vw, 52px);
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -111,9 +132,24 @@ h3 {
   letter-spacing: 0.06em;
 }
 
-h4 { font-size: 20px; font-weight: 600; letter-spacing: 0.08em; }
-h5 { font-size: 16px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
-h6 { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-meta); }
+h4 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+h5 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+h6 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-meta);
+}
 
 p {
   font-family: var(--font-body);
@@ -152,7 +188,9 @@ a {
   text-decoration: none;
   transition: color var(--transition-fast);
 }
-a:hover { color: var(--centam-mint); }
+a:hover {
+  color: var(--centam-mint);
+}
 
 /* On light sections */
 .centam-section-light a {
@@ -161,7 +199,9 @@ a:hover { color: var(--centam-mint); }
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
-.centam-section-light a:hover { color: var(--centam-light-green); }
+.centam-section-light a:hover {
+  color: var(--centam-light-green);
+}
 
 /* -------------------------------------------------------------
    5. LAYOUT — containers, sections
@@ -182,12 +222,30 @@ a:hover { color: var(--centam-mint); }
   position: relative;
 }
 
-.centam-section-dark   { background-color: var(--centam-near-black); color: var(--text-on-dark); }
-.centam-section-darker { background-color: var(--centam-dark-green); color: var(--text-on-dark); }
-.centam-section-slate  { background-color: var(--centam-slate);      color: var(--text-on-dark); }
-.centam-section-light  { background-color: var(--centam-cream);      color: var(--text-on-light); }
-.centam-section-soft-grey  { background-color: var(--centam-soft-grey);  color: var(--text-on-light); }
-.centam-section-light-cream { background-color: var(--centam-light-cream); color: var(--text-on-light); }
+.centam-section-dark {
+  background-color: var(--centam-near-black);
+  color: var(--text-on-dark);
+}
+.centam-section-darker {
+  background-color: var(--centam-dark-green);
+  color: var(--text-on-dark);
+}
+.centam-section-slate {
+  background-color: var(--centam-slate);
+  color: var(--text-on-dark);
+}
+.centam-section-light {
+  background-color: var(--centam-cream);
+  color: var(--text-on-light);
+}
+.centam-section-soft-grey {
+  background-color: var(--centam-soft-grey);
+  color: var(--text-on-light);
+}
+.centam-section-light-cream {
+  background-color: var(--centam-light-cream);
+  color: var(--text-on-light);
+}
 
 .centam-section-light h1,
 .centam-section-light h2,
@@ -200,11 +258,15 @@ a:hover { color: var(--centam-mint); }
 .centam-section-light-cream h1,
 .centam-section-light-cream h2,
 .centam-section-light-cream h3,
-.centam-section-light-cream h4 { color: var(--centam-near-black); }
+.centam-section-light-cream h4 {
+  color: var(--centam-near-black);
+}
 
 .centam-section-light .centam-eyebrow,
 .centam-section-soft-grey .centam-eyebrow,
-.centam-section-light-cream .centam-eyebrow { color: var(--centam-light-green); }
+.centam-section-light-cream .centam-eyebrow {
+  color: var(--centam-light-green);
+}
 
 /* Hexagon mesh overlay — dark-green sections (.centam-section-darker).
    Painted as a repeating background layer over the section's solid
@@ -226,18 +288,40 @@ a:hover { color: var(--centam-mint); }
 }
 
 /* Cards adapt to their section background */
-.centam-section-soft-grey .centam-card { background-color: var(--centam-light-cream); border-color: rgba(21, 30, 34, 0.08); }
-.centam-section-soft-grey .centam-card h3 { color: var(--centam-near-black); }
-.centam-section-soft-grey .centam-card p  { color: rgba(21, 30, 34, 0.7); }
-.centam-section-light-cream .centam-card { background-color: #FFFFFF; border-color: rgba(21, 30, 34, 0.08); }
-.centam-section-light-cream .centam-card h3 { color: var(--centam-near-black); }
-.centam-section-light-cream .centam-card p  { color: rgba(21, 30, 34, 0.7); }
-.centam-section-slate .centam-card { background-color: rgba(255, 255, 255, 0.04); }
+.centam-section-soft-grey .centam-card {
+  background-color: var(--centam-light-cream);
+  border-color: rgba(21, 30, 34, 0.08);
+}
+.centam-section-soft-grey .centam-card h3 {
+  color: var(--centam-near-black);
+}
+.centam-section-soft-grey .centam-card p {
+  color: rgba(21, 30, 34, 0.7);
+}
+.centam-section-light-cream .centam-card {
+  background-color: #ffffff;
+  border-color: rgba(21, 30, 34, 0.08);
+}
+.centam-section-light-cream .centam-card h3 {
+  color: var(--centam-near-black);
+}
+.centam-section-light-cream .centam-card p {
+  color: rgba(21, 30, 34, 0.7);
+}
+.centam-section-slate .centam-card {
+  background-color: rgba(255, 255, 255, 0.04);
+}
 
 @media (max-width: 768px) {
-  .centam-section { padding-top: var(--section-padding-y-mobile); padding-bottom: var(--section-padding-y-mobile); }
+  .centam-section {
+    padding-top: var(--section-padding-y-mobile);
+    padding-bottom: var(--section-padding-y-mobile);
+  }
   .centam-container,
-  .wp-block-group.alignwide { padding-left: var(--gutter-mobile); padding-right: var(--gutter-mobile); }
+  .wp-block-group.alignwide {
+    padding-left: var(--gutter-mobile);
+    padding-right: var(--gutter-mobile);
+  }
 }
 
 /* -------------------------------------------------------------
@@ -272,11 +356,17 @@ header.site-header,
   transition: color var(--transition-fast);
 }
 .site-header a:hover,
-.wp-block-navigation .wp-block-navigation-item a:hover { color: var(--centam-mint); }
+.wp-block-navigation .wp-block-navigation-item a:hover {
+  color: var(--centam-mint);
+}
 
 /* Push page content down by nav height (so hero starts under nav) */
-body { padding-top: 0; } /* hero takes 100vh under the fixed nav */
-body:not(.home) main { padding-top: var(--nav-height); }
+body {
+  padding-top: 0;
+} /* hero takes 100vh under the fixed nav */
+body:not(.home) main {
+  padding-top: var(--nav-height);
+}
 
 /* Language switcher (Polylang) */
 .lang-item a,
@@ -289,8 +379,12 @@ body:not(.home) main { padding-top: var(--nav-height); }
 
 /* Mobile: hamburger menu */
 @media (max-width: 768px) {
-  .site-header { height: 64px; }
-  :root { --nav-height: 64px; }
+  .site-header {
+    height: 64px;
+  }
+  :root {
+    --nav-height: 64px;
+  }
   .wp-block-navigation__responsive-container.is-menu-open {
     background-color: var(--centam-near-black);
     padding-top: 80px;
@@ -323,7 +417,7 @@ body:not(.home) main { padding-top: var(--nav-height); }
    the texture matches the dark content sections exactly; the faint
    look now lives in the SVG stroke-opacity (no element opacity). */
 .centam-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-image: var(--hex-mesh);
@@ -334,14 +428,19 @@ body:not(.home) main { padding-top: var(--nav-height); }
 }
 
 .centam-hero::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-color: rgba(21, 30, 34, 0.45);
   pointer-events: none;
 }
 
-.centam-hero > * { position: relative; z-index: 2; max-width: 900px; padding: 0 var(--gutter-mobile); }
+.centam-hero > * {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 0 var(--gutter-mobile);
+}
 
 .centam-hero h1 {
   color: var(--centam-cream);
@@ -378,7 +477,9 @@ body:not(.home) main { padding-top: var(--nav-height); }
   padding: 36px 24px;
   border-right: 1px solid rgba(169, 183, 180, 0.1);
 }
-.centam-pillars > div:last-child { border-right: none; }
+.centam-pillars > div:last-child {
+  border-right: none;
+}
 .centam-pillars h4 {
   font-family: var(--font-heading);
   font-weight: 600;
@@ -389,9 +490,16 @@ body:not(.home) main { padding-top: var(--nav-height); }
   margin: 0;
 }
 @media (max-width: 768px) {
-  .centam-pillars { grid-template-columns: 1fr; }
-  .centam-pillars > div { border-right: none; border-bottom: 1px solid rgba(169, 183, 180, 0.1); }
-  .centam-pillars > div:last-child { border-bottom: none; }
+  .centam-pillars {
+    grid-template-columns: 1fr;
+  }
+  .centam-pillars > div {
+    border-right: none;
+    border-bottom: 1px solid rgba(169, 183, 180, 0.1);
+  }
+  .centam-pillars > div:last-child {
+    border-bottom: none;
+  }
 }
 
 /* -------------------------------------------------------------
@@ -412,9 +520,10 @@ input[type="submit"] {
   border: 1px solid transparent;
   border-radius: var(--radius-button);
   cursor: pointer;
-  transition: background-color var(--transition-fast),
-              border-color var(--transition-fast),
-              transform var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
   display: inline-block;
   text-decoration: none;
 }
@@ -438,13 +547,15 @@ button[type="submit"]:hover {
   border: 1px solid var(--centam-mint);
 }
 .centam-button-ghost {
-  padding: 13px 28px;   /* slightly smaller than the primary's 16px 36px */
-  font-size: 13px;      /* one step down from the primary's 14px */
+  padding: 13px 28px; /* slightly smaller than the primary's 16px 36px */
+  font-size: 13px; /* one step down from the primary's 14px */
 }
 .wp-block-button.is-style-outline .wp-block-button__link:hover,
 .centam-button-ghost:hover {
   background-color: rgba(169, 183, 180, 0.1);
-  border-color: var(--centam-cream); /* subtle lift, distinct from the primary's green fill */
+  border-color: var(
+    --centam-cream
+  ); /* subtle lift, distinct from the primary's green fill */
 }
 
 /* -------------------------------------------------------------
@@ -456,7 +567,9 @@ button[type="submit"]:hover {
   border: var(--border-mint);
   border-radius: var(--radius-card);
   padding: 36px 32px;
-  transition: transform var(--transition-medium), border-color var(--transition-fast);
+  transition:
+    transform var(--transition-medium),
+    border-color var(--transition-fast);
 }
 .centam-card:hover {
   transform: translateY(-4px);
@@ -473,11 +586,15 @@ button[type="submit"]:hover {
 
 /* On cream sections: cards invert */
 .centam-section-light .centam-card {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-color: rgba(21, 30, 34, 0.1);
 }
-.centam-section-light .centam-card h3 { color: var(--centam-near-black); }
-.centam-section-light .centam-card p  { color: rgba(21, 30, 34, 0.7); }
+.centam-section-light .centam-card h3 {
+  color: var(--centam-near-black);
+}
+.centam-section-light .centam-card p {
+  color: rgba(21, 30, 34, 0.7);
+}
 
 /* Card grid */
 .centam-card-grid {
@@ -485,8 +602,16 @@ button[type="submit"]:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
-@media (max-width: 992px) { .centam-card-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .centam-card-grid { grid-template-columns: 1fr; } }
+@media (max-width: 992px) {
+  .centam-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .centam-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* Category tag on news cards */
 .centam-card .category-tag {
@@ -510,10 +635,20 @@ button[type="submit"]:hover {
   grid-template-columns: repeat(4, 1fr);
   gap: 40px 32px;
 }
-@media (max-width: 1024px) { .centam-team-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px)  { .centam-team-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1024px) {
+  .centam-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .centam-team-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
-.centam-team-member { text-align: center; }
+.centam-team-member {
+  text-align: center;
+}
 
 .centam-team-photo {
   width: 200px;
@@ -523,14 +658,7 @@ button[type="submit"]:hover {
   position: relative;
   overflow: hidden;
 
-  clip-path: polygon(
-    50% 0%,
-    100% 25%,
-    100% 75%,
-    50% 100%,
-    0% 75%,
-    0% 25%
-  );
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 
   background-color: var(--centam-green);
 
@@ -563,7 +691,9 @@ button[type="submit"]:hover {
 
   pointer-events: none;
 }
-.centam-team-member:hover .centam-team-photo { transform: scale(1.03); }
+.centam-team-member:hover .centam-team-photo {
+  transform: scale(1.03);
+}
 
 .centam-team-member h3 {
   font-size: 20px;
@@ -593,7 +723,12 @@ button[type="submit"]:hover {
   gap: 80px;
   align-items: start;
 }
-@media (max-width: 900px) { .centam-contact-grid { grid-template-columns: 1fr; gap: 48px; } }
+@media (max-width: 900px) {
+  .centam-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
 
 input[type="text"],
 input[type="email"],
@@ -609,9 +744,12 @@ textarea,
   font-family: var(--font-body);
   font-size: 16px;
   color: var(--centam-cream);
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
 }
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline: none;
   border-color: var(--centam-mint);
   background-color: rgba(255, 255, 255, 0.06);
@@ -628,7 +766,10 @@ label,
   display: block;
 }
 
-textarea { min-height: 160px; resize: vertical; }
+textarea {
+  min-height: 160px;
+  resize: vertical;
+}
 
 /* -------------------------------------------------------------
    12. FOOTER
@@ -656,7 +797,9 @@ textarea { min-height: 160px; resize: vertical; }
   padding: 4px 0;
   font-size: 14px;
 }
-.site-footer a:hover { color: var(--centam-cream); }
+.site-footer a:hover {
+  color: var(--centam-cream);
+}
 .site-footer .footer-bottom {
   border-top: 1px solid rgba(169, 183, 180, 0.1);
   padding-top: 24px;
@@ -672,7 +815,9 @@ textarea { min-height: 160px; resize: vertical; }
 .centam-fade-in {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 600ms ease, transform 600ms ease;
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
 }
 .centam-fade-in.is-visible {
   opacity: 1;
@@ -692,7 +837,9 @@ textarea { min-height: 160px; resize: vertical; }
 }
 
 /* Maroon accent — for very small details only (rule from brief) */
-.centam-accent-maroon { color: var(--centam-maroon); }
+.centam-accent-maroon {
+  color: var(--centam-maroon);
+}
 .centam-bar-maroon {
   width: 36px;
   height: 3px;
@@ -702,15 +849,30 @@ textarea { min-height: 160px; resize: vertical; }
 }
 
 /* Hide scrollbars on horizontal scroll containers */
-.centam-scroll-x { overflow-x: auto; scrollbar-width: thin; }
+.centam-scroll-x {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
 
 /* -------------------------------------------------------------
    14. RESPONSIVE TWEAKS — final pass
    ------------------------------------------------------------- */
 @media (max-width: 768px) {
-  body { font-size: 16px; }
-  .centam-hero { min-height: 88vh; }
-  .centam-hero p { font-size: 16px; margin-bottom: 1.8em; }
+  body {
+    font-size: 16px;
+  }
+  .centam-hero {
+    min-height: 88vh;
+  }
+  .centam-hero p {
+    font-size: 16px;
+    margin-bottom: 1.8em;
+  }
+  /* Tighter horizontal padding in the nav bar on phones (it otherwise keeps
+     the 48px desktop gutter, crowding the logo and toggle). */
+  .site-header .nav-inner {
+    padding: 0 var(--gutter-mobile);
+  }
 }
 
 /* Reduce motion for accessibility */
@@ -721,15 +883,26 @@ textarea { min-height: 160px; resize: vertical; }
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  .centam-fade-in { opacity: 1; transform: none; }
+  .centam-fade-in {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* -------------------------------------------------------------
    15. PRINT — minimal, in case anyone prints a page
    ------------------------------------------------------------- */
 @media print {
-  .site-header, .site-footer, .centam-hero::before, .centam-hero::after { display: none; }
-  body { background: white; color: black; }
+  .site-header,
+  .site-footer,
+  .centam-hero::before,
+  .centam-hero::after {
+    display: none;
+  }
+  body {
+    background: white;
+    color: black;
+  }
 }
 
 /* -------------------------------------------------------------
@@ -738,47 +911,170 @@ textarea { min-height: 160px; resize: vertical; }
    spacing, placeholders) for the standalone preview. Kept last so
    the cascade resolves exactly as in the original file.
    ------------------------------------------------------------- */
-body { margin: 0; padding: 0; }
-main { padding-top: 0; }
+body {
+  margin: 0;
+  padding: 0;
+}
+main {
+  padding-top: 0;
+}
 
-.site-header { height: 92px; }
-:root { --nav-height: 92px; }
+.site-header {
+  height: 92px;
+}
+:root {
+  --nav-height: 92px;
+}
 
 .site-header .nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  width: 100%; max-width: var(--container-max); margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
   padding: 0 var(--gutter-desktop);
 }
-.nav-logo { display: inline-flex; align-items: center; text-decoration: none; }
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
 .nav-logo img {
-  height: 58px; width: auto; display: block;
+  height: 58px;
+  width: auto;
+  display: block;
   /* Optional: filter that lifts the green/maroon when nav goes transparent over hero */
 }
-.nav-menu { display: flex; gap: 4px; }
-@media (max-width: 980px) { .nav-menu { display: none; } }
-.nav-lang { color: var(--centam-mint); font-family: var(--font-heading); font-size: 14px; letter-spacing: 0.15em; }
-.nav-lang span:nth-child(1) { color: var(--centam-cream); }
-.nav-lang span:nth-child(2) { opacity: 0.4; margin: 0 8px; }
+.nav-menu {
+  display: flex;
+  gap: 4px;
+}
+.nav-lang {
+  color: var(--centam-mint);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  letter-spacing: 0.15em;
+}
+.nav-lang span:nth-child(1) {
+  color: var(--centam-cream);
+}
+.nav-lang span:nth-child(2) {
+  opacity: 0.4;
+  margin: 0 8px;
+}
 
-.footer-logo img { height: 76px; width: auto; display: block; }
+/* Hamburger toggle — hidden on desktop, shown on mobile (see below). */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--centam-cream);
+  border-radius: 2px;
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+}
+/* Open state: morph the three bars into an X */
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile nav: collapse the link row into a slide-down panel driven by the
+   hamburger. The language switcher is non-functional in this preview, so it
+   is folded away to keep the bar to just logo + toggle. */
+@media (max-width: 980px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+  .nav-lang {
+    display: none;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background-color: var(--centam-near-black);
+    border-bottom: 1px solid rgba(169, 183, 180, 0.1);
+    padding: 8px 0;
+    max-height: calc(100vh - var(--nav-height));
+    overflow-y: auto;
+    transform: translateY(-150%);
+    visibility: hidden;
+    transition:
+      transform var(--transition-medium),
+      visibility var(--transition-medium);
+  }
+  .nav-menu.is-open {
+    transform: translateY(0);
+    visibility: visible;
+  }
+  .nav-menu a {
+    display: block;
+    padding: 14px var(--gutter-mobile);
+    font-size: 18px;
+  }
+}
+
+.footer-logo img {
+  height: 76px;
+  width: auto;
+  display: block;
+}
 
 .img-placeholder {
-  background: linear-gradient(135deg, var(--centam-green), var(--centam-dark-green));
+  background: linear-gradient(
+    135deg,
+    var(--centam-green),
+    var(--centam-dark-green)
+  );
   border-radius: var(--radius-card);
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: rgba(230, 236, 234, 0.5);
-  font-family: var(--font-heading); font-size: 13px;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  min-height: 320px; border: var(--border-mint);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  min-height: 320px;
+  border: var(--border-mint);
 }
 .centam-section-light .img-placeholder {
-  background: linear-gradient(135deg, var(--centam-mint), rgba(169, 183, 180, 0.4));
+  background: linear-gradient(
+    135deg,
+    var(--centam-mint),
+    rgba(169, 183, 180, 0.4)
+  );
   border-color: rgba(21, 30, 34, 0.1);
   color: rgba(21, 30, 34, 0.4);
 }
 
 .img-hero {
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   /* Full-bleed background layer. The .centam-hero > * rule (section 7)
      also matches this element and would otherwise cap it at
      max-width: 900px and lift it to z-index: 2 — that left the rest of
@@ -789,21 +1085,57 @@ main { padding-top: 0; }
   z-index: 0;
   background:
     linear-gradient(135deg, rgba(31, 58, 61, 0.55), rgba(21, 30, 34, 0.85)),
-    radial-gradient(ellipse at 30% 30%, rgba(58, 111, 107, 0.45), transparent 50%),
-    radial-gradient(ellipse at 70% 70%, rgba(106, 77, 106, 0.30), transparent 60%),
+    radial-gradient(
+      ellipse at 30% 30%,
+      rgba(58, 111, 107, 0.45),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 70% 70%,
+      rgba(106, 77, 106, 0.3),
+      transparent 60%
+    ),
     var(--centam-dark-green);
 }
 
-.about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: center; }
-@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
 
-.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
-@media (max-width: 768px) { .values-grid { grid-template-columns: 1fr; gap: 24px; } }
-.value-item h4 { font-size: 14px; color: var(--centam-light-green); margin-bottom: 8px; letter-spacing: 0.12em; }
-.value-item p { font-size: 15px; }
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+@media (max-width: 768px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+.value-item h4 {
+  font-size: 14px;
+  color: var(--centam-light-green);
+  margin-bottom: 8px;
+  letter-spacing: 0.12em;
+}
+.value-item p {
+  font-size: 15px;
+}
 
 .maroon-bar {
-  width: 48px; height: 3px;
+  width: 48px;
+  height: 3px;
   background-color: var(--centam-maroon);
   display: block;
   margin: 0 0 24px;
@@ -840,11 +1172,30 @@ main { padding-top: 0; }
   letter-spacing: 0.15em;
 }
 
-/* About: featured image block */
-.img-placeholder--about { min-height: 480px; }
+/* About: featured image block. The image fills the frame edge-to-edge
+   (cover) so it reads as a designed panel rather than a small centred
+   graphic, and is clipped to the card radius. */
+.img-placeholder--about {
+  min-height: 480px;
+  overflow: hidden;
+}
+.img-placeholder--about img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+@media (max-width: 768px) {
+  .img-placeholder--about {
+    min-height: 320px;
+  }
+}
 
 /* Centered maroon bar (overrides the default left-aligned bar) */
-.maroon-bar--center { margin: 0 auto 24px; }
+.maroon-bar--center {
+  margin: 0 auto 24px;
+}
 
 /* Card media area that bleeds to the card edges (image header) */
 .card-media {
@@ -852,8 +1203,16 @@ main { padding-top: 0; }
   margin-right: -32px;
   border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
-.card-media--project { min-height: 180px; margin-top: -36px; margin-bottom: 24px; }
-.card-media--news    { min-height: 160px; margin-top: -36px; margin-bottom: 20px; }
+.card-media--project {
+  min-height: 180px;
+  margin-top: -36px;
+  margin-bottom: 24px;
+}
+.card-media--news {
+  min-height: 160px;
+  margin-top: -36px;
+  margin-bottom: 20px;
+}
 
 /* News: call-to-action row */
 .news-cta {
@@ -862,8 +1221,12 @@ main { padding-top: 0; }
 }
 
 /* Contact form field spacing */
-.form-field { margin-bottom: 20px; }
-.form-field--message { margin-bottom: 28px; }
+.form-field {
+  margin-bottom: 20px;
+}
+.form-field--message {
+  margin-bottom: 28px;
+}
 
 /* Contact info labels and details */
 .contact-label {
@@ -873,7 +1236,13 @@ main { padding-top: 0; }
   letter-spacing: 0.2em;
   margin-bottom: 8px;
 }
-.contact-detail { margin-bottom: 32px; }
+.contact-detail {
+  margin-bottom: 32px;
+}
+
+.contact-link {
+  word-break: break-all;
+}
 
 /* Footer layout and brand block */
 .footer-grid {
@@ -881,7 +1250,21 @@ main { padding-top: 0; }
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 48px;
 }
-.footer-brand { margin-bottom: 16px; }
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+@media (max-width: 480px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+.footer-brand {
+  margin-bottom: 16px;
+}
 .footer-tagline {
   font-size: 13px;
   color: var(--centam-mint);
@@ -894,7 +1277,9 @@ main { padding-top: 0; }
   font-size: 13px;
   letter-spacing: 0.15em;
 }
-.footer-lang__active { color: var(--centam-cream); }
+.footer-lang__active {
+  color: var(--centam-cream);
+}
 
 /* -------------------------------------------------------------
    18. DETAIL PAGES (project.html, news-article.html)
@@ -903,4 +1288,6 @@ main { padding-top: 0; }
    is affected.
    ------------------------------------------------------------- */
 #project-detail .img-placeholder,
-#news-detail .img-placeholder { margin: 32px 0 40px; }
+#news-detail .img-placeholder {
+  margin: 32px 0 40px;
+}

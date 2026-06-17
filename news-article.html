@@ -1,98 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>News | CENTAM</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News | CENTAM</title>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Site styles (shared with index.html) -->
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-  <!-- ============================================================
+    <!-- Site styles (shared with index.html) -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ============================================================
        SITE HEADER / NAVIGATION
        Reuses the homepage header; links point back to the homepage
        sections since those anchors live on index.html.
        ============================================================ -->
-  <header class="site-header">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="https://centam.be/wp-content/uploads/2026/05/Centam_Logo_Hexagon_Name_Green_Maroon_300dpi.png" alt="Ceramic Engineering Through Additive Manufacturing">
-      </a>
-      <nav class="nav-menu">
-        <a href="index.html#about">About</a>
-        <a href="index.html#services">Services</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#team">Team</a>
-        <a href="news.html">News</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
-      <div class="nav-lang"><span>EN</span><span>|</span><span>NL</span></div>
-    </div>
-  </header>
+    <header class="site-header">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img
+            src="https://centam.be/wp-content/uploads/2026/05/Centam_Logo_Hexagon_Name_Green_Maroon_300dpi.png"
+            alt="Ceramic Engineering Through Additive Manufacturing"
+          />
+        </a>
+        <nav class="nav-menu" id="primary-nav">
+          <a href="index.html#about">About</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#projects">Projects</a>
+          <a href="index.html#team">Team</a>
+          <a href="news.html">News</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <div class="nav-lang"><span>EN</span><span>|</span><span>NL</span></div>
+        <button
+          class="nav-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
 
-  <main>
-
-    <!-- ========================================================
+    <main>
+      <!-- ========================================================
          NEWS ARTICLE — Cream
          Content is injected from the shared `newsArticles` data
          (news.js) by renderNewsDetail() in script.js, based on the
          ?id= value in the URL.
          ======================================================== -->
-    <article class="centam-section centam-section-light" id="news-detail">
-      <div class="centam-container">
-        <p><a href="news.html">← Back to News</a></p>
-        <span class="maroon-bar"></span>
-        <div class="centam-eyebrow" id="news-category"></div>
-        <h1 id="news-title"></h1>
-        <p><small id="news-date"></small></p>
-        <div class="img-placeholder" id="news-media"></div>
-        <div id="news-body"></div>
-      </div>
-    </article>
+      <article class="centam-section centam-section-light" id="news-detail">
+        <div class="centam-container">
+          <p><a href="news.html">← Back to News</a></p>
+          <span class="maroon-bar"></span>
+          <div class="centam-eyebrow" id="news-category"></div>
+          <h1 id="news-title"></h1>
+          <p><small id="news-date"></small></p>
+          <div class="img-placeholder" id="news-media"></div>
+          <div id="news-body"></div>
+        </div>
+      </article>
+    </main>
 
-  </main>
-
-  <!-- ============================================================
+    <!-- ============================================================
        SITE FOOTER (shared with index.html)
        ============================================================ -->
-  <footer class="site-footer">
-    <div class="centam-container">
-      <div class="footer-grid">
-        <div>
-          <div class="nav-logo footer-logo footer-brand">
-            <img src="https://centam.be/wp-content/uploads/2026/05/Centam_Logo_Hexagon_Name_White_300ppi.png" alt="CENTAM">
+    <footer class="site-footer">
+      <div class="centam-container">
+        <div class="footer-grid">
+          <div>
+            <div class="nav-logo footer-logo footer-brand">
+              <img
+                src="https://centam.be/wp-content/uploads/2026/05/Centam_Logo_Hexagon_Name_White_300ppi.png"
+                alt="CENTAM"
+              />
+            </div>
+            <p class="footer-tagline">
+              Ceramic Engineering Through Additive Manufacturing
+            </p>
           </div>
-          <p class="footer-tagline">Ceramic Engineering Through Additive Manufacturing</p>
+          <div>
+            <h4>Sitemap</h4>
+            <a href="index.html#about">About</a
+            ><a href="index.html#services">Services</a
+            ><a href="index.html#projects">Projects</a>
+            <a href="index.html#team">Team</a><a href="news.html">News</a
+            ><a href="index.html#contact">Contact</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="mailto:info@centam.be">info@centam.be</a>
+            <a href="#">Leuven, Belgium</a><a href="#">LinkedIn</a>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <a href="#">Privacy</a><a href="#">Cookies</a>
+            <div class="footer-lang">
+              <span class="footer-lang__active">EN</span> | NL
+            </div>
+          </div>
         </div>
-        <div>
-          <h4>Sitemap</h4>
-          <a href="index.html#about">About</a><a href="index.html#services">Services</a><a href="index.html#projects">Projects</a>
-          <a href="index.html#team">Team</a><a href="news.html">News</a><a href="index.html#contact">Contact</a>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <a href="mailto:info@centam.be">info@centam.be</a>
-          <a href="#">Leuven, Belgium</a><a href="#">LinkedIn</a>
-        </div>
-        <div>
-          <h4>Legal</h4>
-          <a href="#">Privacy</a><a href="#">Cookies</a>
-          <div class="footer-lang"><span class="footer-lang__active">EN</span> | NL</div>
-        </div>
+        <div class="footer-bottom">© 2025 CENTAM. All rights reserved.</div>
       </div>
-      <div class="footer-bottom">© 2025 CENTAM. All rights reserved.</div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Site scripts (data loads first, then behavior) -->
-  <script src="news.js"></script>
-  <script src="script.js"></script>
-</body>
+    <!-- Site scripts (data loads first, then behavior) -->
+    <script src="news.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
