@@ -31,7 +31,14 @@ function renderProjectCards() {
 
     const media = document.createElement('div');
     media.className = 'img-placeholder card-media card-media--project';
-    media.textContent = project.media || '';
+    if (project.mediaImage) {
+      const image = document.createElement('img');
+      image.src = project.mediaImage;
+      image.alt = project.title;
+      media.appendChild(image);
+    } else {
+      media.textContent = project.media || '';
+    }
 
     const tag = document.createElement('span');
     tag.className = 'category-tag';
@@ -85,7 +92,13 @@ function renderProjectDetail() {
   document.title = `${project.title} | CENTAM`;
   if (categoryEl) categoryEl.textContent = project.category || '';
   titleEl.textContent = project.title;
-  if (mediaEl) mediaEl.textContent = project.media || '';
+  if (mediaEl) {
+    if (project.mediaImage) {
+      mediaEl.innerHTML = `<img src="${project.mediaImage}" alt="${project.title}">`;
+    } else {
+      mediaEl.textContent = project.media || '';
+    }
+  }
 
   // Body copy — fall back to the card excerpt when no long-form body exists.
   const paragraphs = project.body && project.body.length ? project.body : [project.excerpt];
@@ -150,7 +163,14 @@ function renderNewsCards() {
 
     const media = document.createElement('div');
     media.className = 'img-placeholder card-media card-media--news';
-    media.textContent = article.media || '';
+    if (article.mediaImage) {
+      const image = document.createElement('img');
+      image.src = article.mediaImage;
+      image.alt = article.title;
+      media.appendChild(image);
+    } else {
+      media.textContent = article.media || '';
+    }
 
     const tag = document.createElement('span');
     tag.className = 'category-tag';
@@ -216,7 +236,13 @@ function renderNewsDetail() {
   if (categoryEl) categoryEl.textContent = article.category || '';
   if (dateEl) dateEl.textContent = article.date || '';
   titleEl.textContent = article.title;
-  if (mediaEl) mediaEl.textContent = article.media || '';
+  if (mediaEl) {
+    if (article.mediaImage) {
+      mediaEl.innerHTML = `<img src="${article.mediaImage}" alt="${article.title}">`;
+    } else {
+      mediaEl.textContent = article.media || '';
+    }
+  }
 
   // Body copy — fall back to the card excerpt when no long-form body exists.
   const paragraphs = article.body && article.body.length ? article.body : [article.excerpt];
