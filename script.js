@@ -288,6 +288,29 @@ function initContactForm() {
   form.addEventListener('submit', (event) => event.preventDefault());
 }
 
+/* Ensure mailto: links open the user's mail client immediately on click.
+   Some browsers or setups may require explicit navigation; this helper
+   forces navigation while preserving modifier-clicks (open in new tab).
+ */
+function initMailtoLinks() {
+  const mailtoLinks = document.querySelectorAll('a[href^="mailto:"]');
+  if (!mailtoLinks.length) return;
+  mailtoLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      // Respect modifier-clicks (open in new tab/window)
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      // Try opening in a new window first — some embedded previews
+      // require an explicit external navigation to trigger the mail client.
+      const opened = window.open(link.href, '_blank');
+      if (!opened) {
+        // Fallback to location change if popup is blocked.
+        window.location.href = link.href;
+      }
+    });
+  });
+}
+
 /* -------------------------------------------------------------
    Boot
    ------------------------------------------------------------- */
@@ -298,6 +321,7 @@ function init() {
   renderNewsDetail();
   initFadeIn();
   initContactForm();
+  initMailtoLinks();
 }
 
 if (document.readyState === 'loading') {
