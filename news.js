@@ -23,42 +23,19 @@
    ============================================================= */
 const newsArticles = [
   {
-    id: 'centam-officially-launches',
-    category: 'Announcements',
-    title: 'CENTAM Officially Launches',
-    media: 'Launch',
-    date: 'May 2025',
-    excerpt: 'A new materials science and engineering company opens its doors to industrial partners across Europe.',
+    id: 'centam-first-quarter-completion',
+    category: 'Milestone',
+    title: 'CENTAM completes its first quarter as an official company',
+    media: 'First Quarter Completion',
+    mediaImage: 'https://centam.be/wp-content/uploads/2026/06/Centam_board.png',
+    date: '18 June 2026',
+    excerpt: 'We are pleased to mark the close of CENTAM\'s first quarter as a formally incorporated company — a milestone that reflects the dedication and expertise our team has invested over many years.',
     body: [
-      'A new materials science and engineering company opens its doors to industrial partners across Europe.',
-      'Founded by a team of PhD researchers in advanced ceramics, CENTAM brings deep expertise in Si-SiC systems — spanning material characterization, additive manufacturing, post-processing and quality analysis — to manufacturers, research institutions and technology companies.',
-      'The launch marks the start of CENTAM’s mission to translate cutting-edge materials science into practical industrial value, bridging the gap between academic research and scalable production.'
+      'We are pleased to mark the close of CENTAM\'s first quarter as a formally incorporated company — a milestone that reflects the dedication and expertise our team has invested over many years.',
+      'CENTAM was founded by Berfu Göksel, Margherita Beretta, Mia Kovac, Sebastian Meyers, and Waut Declercq, who together bring deep, combined experience in additive manufacturing, advanced ceramics, and silicon carbide processing. Long before the company existed, the founding team had already collaborated as colleagues, researchers, and engineers. Through sustained engagement with industry, they identified a recurring challenge: demand for complex SiSiC components was growing steadily, while manufacturing options remained limited, costly, and largely constrained by conventional production methods.',
+      'That observation became the foundation of CENTAM. What began as discussions between trusted colleagues evolved into a structured business plan, early customer engagements, technical development, and ultimately the establishment of the company.',
+      'We are grateful for the support of the programmes and organisations that have accompanied us in this first phase, including VLAIO, Start it KBC, and SOKWADRAAT. Their confidence in our vision has been invaluable in reaching this point.',
+      'We look forward to the quarters ahead; continuing to build, to learn, and to deliver on the opportunity we see in this market.',
     ]
   },
-  {
-    id: 'understanding-ceramic-sintering',
-    category: 'Research Updates',
-    title: 'Understanding Ceramic Sintering',
-    media: 'Sintering kiln',
-    date: 'May 2025',
-    excerpt: 'The single most important step in ceramic manufacturing happens in the furnace. Here’s what it actually does.',
-    body: [
-      'The single most important step in ceramic manufacturing happens in the furnace. Here’s what it actually does.',
-      'During sintering, a shaped “green” part is heated below its melting point so that its particles bond and densify, turning a fragile compact into a hard, durable component. The temperature profile, atmosphere and hold time all shape the final microstructure.',
-      'For Si-SiC systems in particular, careful control of this step governs density, phase composition and mechanical performance — which is why CENTAM treats process control in the furnace as central to reliable, repeatable results.'
-    ]
-  },
-  {
-    id: 'advanced-materials-summit-takeaways',
-    category: 'Industry News',
-    title: 'Key Takeaways from the Advanced Materials Summit',
-    media: 'Conference',
-    date: 'May 2025',
-    excerpt: 'Notes from the show floor, three trends worth watching, and the conversations that mattered most.',
-    body: [
-      'Notes from the show floor, three trends worth watching, and the conversations that mattered most.',
-      'Additive manufacturing of technical ceramics continued to dominate the agenda, with growing interest in post-processing as the decisive factor in part quality. Sustainability and energy efficiency in high-temperature processing were recurring themes across the sessions.',
-      'Most valuable, as ever, were the conversations between sessions — comparing notes with peers on what works in real production environments and where the field is heading next.'
-    ]
-  }
 ];

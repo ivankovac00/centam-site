@@ -632,7 +632,7 @@ button[type="submit"]:hover {
    ------------------------------------------------------------- */
 .centam-team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 40px 32px;
 }
 @media (max-width: 1024px) {
@@ -1133,12 +1133,53 @@ main {
   font-size: 15px;
 }
 
-.maroon-bar {
-  width: 48px;
-  height: 3px;
-  background-color: var(--centam-maroon);
+  .partners-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .partners-grid {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+  @media (max-width: 600px) { .partners-grid { flex-direction: column; gap: 16px; } }
+  .partner-logo {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-
+  height: 120px;
+    padding: 14px 8px;
+    background-color: transparent;
+  }
+  .partner-logo img {
+    width: 100%;
+    max-width: 180px;
+    max-height: 100px;
+    object-fit: contain;
+    display: block;
+  }
+  .partner-logo:hover img {
+    transform: scale(1.02);
+  }
+  .partner-logo,
+  .partner-logo img {
+    transition: transform var(--transition-fast);
+  }
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  margin: 0 0 24px;
+  border-radius: inherit;
 }
 
 /* -------------------------------------------------------------
@@ -1290,4 +1331,43 @@ main {
 #project-detail .img-placeholder,
 #news-detail .img-placeholder {
   margin: 32px 0 40px;
+}
+
+/* News article & cards: show original image aspect ratio (no crop) */
+#news-detail .img-placeholder {
+  /* allow the image to size naturally inside the placeholder */
+  min-height: 0;
+  padding: 12px 0 24px;
+}
+#news-detail .img-placeholder img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* News card media: show full image without cropping */
+.card-media--news img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Homepage-only: crop top and bottom of news card images without changing
+   the news article page. Targets the homepage news grid which sets
+   `data-limit` on `#news-grid`. */
+#news-grid[data-limit] .card-media--news {
+  height: 240px;
+  overflow: hidden;
+}
+#news-grid[data-limit] .card-media--news img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: translateY(7%); /* fine-tuned shift to center characters */
 }

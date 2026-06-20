@@ -31,7 +31,14 @@ function renderProjectCards() {
 
     const media = document.createElement('div');
     media.className = 'img-placeholder card-media card-media--project';
-    media.textContent = project.media || '';
+    if (project.mediaImage) {
+      const image = document.createElement('img');
+      image.src = project.mediaImage;
+      image.alt = project.title;
+      media.appendChild(image);
+    } else {
+      media.textContent = project.media || '';
+    }
 
     const tag = document.createElement('span');
     tag.className = 'category-tag';
@@ -85,7 +92,13 @@ function renderProjectDetail() {
   document.title = `${project.title} | CENTAM`;
   if (categoryEl) categoryEl.textContent = project.category || '';
   titleEl.textContent = project.title;
-  if (mediaEl) mediaEl.textContent = project.media || '';
+  if (mediaEl) {
+    if (project.mediaImage) {
+      mediaEl.innerHTML = `<img src="${project.mediaImage}" alt="${project.title}">`;
+    } else {
+      mediaEl.textContent = project.media || '';
+    }
+  }
 
   // Body copy — fall back to the card excerpt when no long-form body exists.
   const paragraphs = project.body && project.body.length ? project.body : [project.excerpt];
@@ -150,7 +163,14 @@ function renderNewsCards() {
 
     const media = document.createElement('div');
     media.className = 'img-placeholder card-media card-media--news';
-    media.textContent = article.media || '';
+    if (article.mediaImage) {
+      const image = document.createElement('img');
+      image.src = article.mediaImage;
+      image.alt = article.title;
+      media.appendChild(image);
+    } else {
+      media.textContent = article.media || '';
+    }
 
     const tag = document.createElement('span');
     tag.className = 'category-tag';
@@ -216,7 +236,13 @@ function renderNewsDetail() {
   if (categoryEl) categoryEl.textContent = article.category || '';
   if (dateEl) dateEl.textContent = article.date || '';
   titleEl.textContent = article.title;
-  if (mediaEl) mediaEl.textContent = article.media || '';
+  if (mediaEl) {
+    if (article.mediaImage) {
+      mediaEl.innerHTML = `<img src="${article.mediaImage}" alt="${article.title}">`;
+    } else {
+      mediaEl.textContent = article.media || '';
+    }
+  }
 
   // Body copy — fall back to the card excerpt when no long-form body exists.
   const paragraphs = article.body && article.body.length ? article.body : [article.excerpt];
@@ -260,6 +286,29 @@ function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
   form.addEventListener('submit', (event) => event.preventDefault());
+}
+
+/* Ensure mailto: links open the user's mail client immediately on click.
+   Some browsers or setups may require explicit navigation; this helper
+   forces navigation while preserving modifier-clicks (open in new tab).
+ */
+function initMailtoLinks() {
+  const mailtoLinks = document.querySelectorAll('a[href^="mailto:"]');
+  if (!mailtoLinks.length) return;
+  mailtoLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      // Respect modifier-clicks (open in new tab/window)
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      // Try opening in a new window first — some embedded previews
+      // require an explicit external navigation to trigger the mail client.
+      const opened = window.open(link.href, '_blank');
+      if (!opened) {
+        // Fallback to location change if popup is blocked.
+        window.location.href = link.href;
+      }
+    });
+  });
 }
 
 /* -------------------------------------------------------------
@@ -311,6 +360,7 @@ function init() {
   renderNewsDetail();
   initFadeIn();
   initContactForm();
+  initMailtoLinks();
   initMobileNav();
 }
 
