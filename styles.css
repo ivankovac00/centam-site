@@ -956,12 +956,24 @@ main {
   font-size: 14px;
   letter-spacing: 0.15em;
 }
-.nav-lang span:nth-child(1) {
+.nav-lang__active {
   color: var(--centam-cream);
 }
-.nav-lang span:nth-child(2) {
+.nav-lang__divider {
   opacity: 0.4;
   margin: 0 8px;
+}
+.nav-lang a {
+  color: inherit;
+  text-decoration: none;
+}
+.nav-lang a:hover {
+  color: var(--centam-cream);
+}
+/* Duplicate language link surfaced inside the mobile slide-down menu,
+   since .nav-lang itself is hidden below 980px (see media query below). */
+.nav-lang-mobile {
+  display: none;
 }
 
 /* Hamburger toggle — hidden on desktop, shown on mobile (see below). */
@@ -999,14 +1011,18 @@ main {
 }
 
 /* Mobile nav: collapse the link row into a slide-down panel driven by the
-   hamburger. The language switcher is non-functional in this preview, so it
-   is folded away to keep the bar to just logo + toggle. */
+   hamburger. The desktop language switcher is folded away to keep the bar
+   to just logo + toggle; .nav-lang-mobile (inside #primary-nav) surfaces
+   the same EN/NL link within the slide-down panel instead. */
 @media (max-width: 980px) {
   .nav-toggle {
     display: inline-flex;
   }
   .nav-lang {
     display: none;
+  }
+  .nav-lang-mobile {
+    display: block;
   }
 
   .nav-menu {
@@ -1288,7 +1304,7 @@ main {
 /* Footer layout and brand block */
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 48px;
 }
 @media (max-width: 768px) {
@@ -1312,16 +1328,6 @@ main {
   max-width: 280px;
   margin-top: 16px;
 }
-.footer-lang {
-  margin-top: 16px;
-  color: var(--centam-mint);
-  font-size: 13px;
-  letter-spacing: 0.15em;
-}
-.footer-lang__active {
-  color: var(--centam-cream);
-}
-
 /* -------------------------------------------------------------
    18. DETAIL PAGES (project.html, news-article.html)
    Spacing only — every visual style is reused from the existing

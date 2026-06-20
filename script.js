@@ -5,6 +5,42 @@
    ============================================================= */
 
 /* -------------------------------------------------------------
+   NL TOGGLE — flip to `false` to take the Dutch site offline
+   without deleting anything: hides the EN↔NL switcher on every
+   page, and bounces any direct visit to a /nl/ page back to its
+   English equivalent. Flip back to `true` to bring it back.
+   ------------------------------------------------------------- */
+const NL_ENABLED = true;
+
+/* -------------------------------------------------------------
+   i18n strings for text this script renders dynamically (card
+   links, not-found fallbacks). Static markup is translated
+   directly in each language's HTML file; only generated text
+   needs to live here. Keyed off <html lang>, set per page.
+   ------------------------------------------------------------- */
+const STRINGS = {
+  en: {
+    readMore: 'Read More →',
+    projectNotFoundTitle: 'Project not found | CENTAM',
+    projectNotFoundHeading: 'Project not found',
+    projectNotFoundBody: 'Sorry, we could not find that project. Use the link above to return to the projects overview.',
+    articleNotFoundTitle: 'Article not found | CENTAM',
+    articleNotFoundHeading: 'Article not found',
+    articleNotFoundBody: 'Sorry, we could not find that article. Use the link above to return to the news overview.',
+  },
+  nl: {
+    readMore: 'Lees Meer →',
+    projectNotFoundTitle: 'Project niet gevonden | CENTAM',
+    projectNotFoundHeading: 'Project niet gevonden',
+    projectNotFoundBody: 'Sorry, we konden dit project niet vinden. Gebruik de link hierboven om terug te gaan naar het projectoverzicht.',
+    articleNotFoundTitle: 'Artikel niet gevonden | CENTAM',
+    articleNotFoundHeading: 'Artikel niet gevonden',
+    articleNotFoundBody: 'Sorry, we konden dit artikel niet vinden. Gebruik de link hierboven om terug te gaan naar het nieuwsoverzicht.',
+  },
+};
+const T = STRINGS[document.documentElement.lang === 'nl' ? 'nl' : 'en'];
+
+/* -------------------------------------------------------------
    Projects — rendered from the shared `projects` array (projects.js),
    which is the single source of truth for both the homepage card
    grid and the project.html detail page.
@@ -53,7 +89,7 @@ function renderProjectCards() {
     const linkWrap = document.createElement('p');
     const link = document.createElement('a');
     link.href = projectUrl(project.id);
-    link.textContent = 'Read More →';
+    link.textContent = T.readMore;
     linkWrap.appendChild(link);
 
     card.append(media, tag, title, excerpt, linkWrap);
@@ -77,14 +113,14 @@ function renderProjectDetail() {
 
   // Unknown or missing id — show a friendly fallback, never a blank page.
   if (!project) {
-    document.title = 'Project not found | CENTAM';
+    document.title = T.projectNotFoundTitle;
     if (categoryEl) categoryEl.remove();
     if (mediaEl) mediaEl.remove();
     if (metaEl) metaEl.remove();
-    titleEl.textContent = 'Project not found';
+    titleEl.textContent = T.projectNotFoundHeading;
     bodyEl.innerHTML = '';
     const message = document.createElement('p');
-    message.textContent = 'Sorry, we could not find that project. Use the link above to return to the projects overview.';
+    message.textContent = T.projectNotFoundBody;
     bodyEl.appendChild(message);
     return;
   }
@@ -187,7 +223,7 @@ function renderNewsCards() {
     date.textContent = article.date || '';
     const link = document.createElement('a');
     link.href = url;
-    link.textContent = 'Read More →';
+    link.textContent = T.readMore;
     footer.append(date, document.createTextNode(' · '), link);
 
     card.append(media, tag, title, excerpt, footer);
@@ -220,14 +256,14 @@ function renderNewsDetail() {
 
   // Unknown or missing id — show a friendly fallback, never a blank page.
   if (!article) {
-    document.title = 'Article not found | CENTAM';
+    document.title = T.articleNotFoundTitle;
     if (categoryEl) categoryEl.remove();
     if (dateEl) dateEl.remove();
     if (mediaEl) mediaEl.remove();
-    titleEl.textContent = 'Article not found';
+    titleEl.textContent = T.articleNotFoundHeading;
     bodyEl.innerHTML = '';
     const message = document.createElement('p');
-    message.textContent = 'Sorry, we could not find that article. Use the link above to return to the news overview.';
+    message.textContent = T.articleNotFoundBody;
     bodyEl.appendChild(message);
     return;
   }
@@ -351,9 +387,35 @@ function initMobileNav() {
 }
 
 /* -------------------------------------------------------------
+   Language switcher.
+   Carries the current ?id= query string along when switching
+   language on a project/article detail page, so EN ↔ NL stays on
+   the matching item (ids are shared across both data sets).
+   When NL_ENABLED is false, redirect /nl/ visits back to English
+   and remove the switcher instead of wiring it up.
+   ------------------------------------------------------------- */
+function initLangSwitcher() {
+  if (!NL_ENABLED) {
+    if (window.location.pathname.includes('/nl/')) {
+      const target = window.location.pathname.replace('/nl/', '/') + window.location.search;
+      window.location.replace(target);
+      return;
+    }
+    document.querySelectorAll('.nav-lang, .nav-lang-mobile').forEach((el) => el.remove());
+    return;
+  }
+
+  if (!window.location.search) return;
+  document.querySelectorAll('.js-lang-link').forEach((link) => {
+    link.href += window.location.search;
+  });
+}
+
+/* -------------------------------------------------------------
    Boot
    ------------------------------------------------------------- */
 function init() {
+  initLangSwitcher();
   renderProjectCards();
   renderProjectDetail();
   renderNewsCards();
