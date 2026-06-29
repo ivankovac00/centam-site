@@ -472,27 +472,29 @@
             <form id="contact-form">
               <div class="form-field">
                 <label>Volledige Naam</label
-                ><input type="text" placeholder="Uw volledige naam" />
+                ><input id="name" type="text" placeholder="Uw volledige naam" />
               </div>
               <div class="form-field">
                 <label>Bedrijf</label
-                ><input type="text" placeholder="Uw bedrijf" />
+                ><input id="company" type="text" placeholder="Uw bedrijf" />
               </div>
               <div class="form-field">
                 <label>E-mailadres</label
-                ><input type="email" placeholder="u@voorbeeld.com" />
+                ><input id="email" type="email" placeholder="u@voorbeeld.com" />
               </div>
               <div class="form-field">
                 <label>Onderwerp</label
-                ><input type="text" placeholder="Korte onderwerpomschrijving" />
+                ><input id="subject" type="text" placeholder="Korte onderwerpomschrijving" />
               </div>
               <div class="form-field form-field--message">
                 <label>Bericht</label
                 ><textarea
+                  id="message"
                   placeholder="Vertel ons over uw uitdaging..."
                 ></textarea>
               </div>
               <button type="submit">Verstuur Bericht</button>
+              <div class="form-note" id="formNote" role="status" aria-live="polite"></div>
             </form>
             <div>
               <h4 class="contact-label">E-MAIL</h4>

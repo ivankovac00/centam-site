@@ -313,6 +313,37 @@ function initFadeIn() {
   elements.forEach((element) => observer.observe(element));
 }
 
+function handleSubmit(e) {
+    e.preventDefault();
+    var note = document.getElementById('form-note');
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !message) {
+      note.textContent = 'Please fill in name, email, and message.';
+      note.style.color = '#6A4D6A';
+      return false;
+    }
+
+    var subject = encodeURIComponent('CENTAM website contact — ' + name);
+    var body = encodeURIComponent(
+      'Name: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Company: ' + (document.getElementById('company').value.trim() || '—') + '\n\n' +
+      'Message:\n' + message
+    );
+    window.location.href = 'mailto:info@centam.be?subject=' + subject + '&body=' + body;
+
+    const isNl = window.location.pathname.includes('/nl/');
+
+    note.textContent = isNl
+      ? 'Uw e-mailclient wordt geopend... dank u.'
+      : 'Opening your email client... thank you.';
+    note.style.color = '#A9B7B4';
+    return false;
+  }
+
 /* -------------------------------------------------------------
    Contact form.
    Prevents submission in this static preview — replaces the
@@ -321,7 +352,7 @@ function initFadeIn() {
 function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
-  form.addEventListener('submit', (event) => event.preventDefault());
+  form.addEventListener('submit', (event) => handleSubmit(event));
 }
 
 /* Ensure mailto: links open the user's mail client immediately on click.

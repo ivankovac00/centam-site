@@ -1377,3 +1377,11 @@ main {
   display: block;
   transform: translateY(7%); /* fine-tuned shift to center characters */
 }
+
+.form-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--centam-mint);
+  letter-spacing: 0.05em;
+  min-height: 18px;
+}
