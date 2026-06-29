@@ -14,7 +14,7 @@ const projects = [
     category: 'Thermisch Beheer',
     title: 'Gegradeerde Gyroïde Architecturen voor Verbeterde Koellichaamprestaties',
     media: 'Industriële oven',
-    mediaImage: 'https://centam.be/wp-content/uploads/2026/05/gyroid_no_background.png',
+    mediaImage: '/assets/gyroid_no_background.png',
     excerpt: 'Ruimtelijk ontworpen TPMS-structuur met afnemende celgrootte en een wanddikte van 2 mm voor geoptimaliseerd thermisch en vloeistoftransportgedrag.',
     body: [
       'Ruimtelijk ontworpen TPMS-structuur met afnemende celgrootte en een wanddikte van 2 mm voor geoptimaliseerd thermisch en vloeistoftransportgedrag.',

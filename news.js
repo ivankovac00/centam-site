@@ -27,7 +27,7 @@ const newsArticles = [
     category: 'Milestone',
     title: 'CENTAM completes its first quarter as an official company',
     media: 'First Quarter Completion',
-    mediaImage: 'https://centam.be/wp-content/uploads/2026/06/Centam_board.png',
+    mediaImage: '/assets/Centam_board.png',
     date: '18 June 2026',
     excerpt: 'We are pleased to mark the close of CENTAM\'s first quarter as a formally incorporated company — a milestone that reflects the dedication and expertise our team has invested over many years.',
     body: [

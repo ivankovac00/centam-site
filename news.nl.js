@@ -14,7 +14,7 @@ const newsArticles = [
     category: 'Mijlpaal',
     title: 'CENTAM voltooit eerste kwartaal als officieel bedrijf',
     media: 'Afronding Eerste Kwartaal',
-    mediaImage: 'https://centam.be/wp-content/uploads/2026/06/Centam_board.png',
+    mediaImage: '/assets/Centam_board.png',
     date: '18 juni 2026',
     excerpt: 'Het is ons een genoegen om de afsluiting van CENTAM\'s eerste kwartaal als formeel opgericht bedrijf te markeren — een mijlpaal die de toewijding en expertise weerspiegelt die ons team gedurende vele jaren heeft geïnvesteerd.',
     body: [

@@ -24,7 +24,7 @@ const projects = [
     category: 'Thermal Management',
     title: 'Graded Gyroid Architectures for Enhanced Heat Sink Performance',
     media: 'Industrial kiln',
-    mediaImage: 'https://centam.be/wp-content/uploads/2026/05/gyroid_no_background.png',
+    mediaImage: '/assets/gyroid_no_background.png',
     excerpt: 'Spatially engineered TPMS structure with decreasing cell size and 2 mm wall thickness for optimized thermal and fluid transport behavior.',
     body: [
       'Spatially engineered TPMS structure with decreasing cell size and 2 mm wall thickness for optimized thermal and fluid transport behavior.',
