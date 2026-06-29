@@ -33,6 +33,7 @@
   --text-meta: var(--centam-mint);
   --action: var(--centam-light-green);
   --accent: var(--centam-maroon);
+  --error-red: #d32f2f;
 
   /* Typography */
   --font-heading: "Barlow Condensed", sans-serif;
@@ -1170,8 +1171,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-
-  height: 120px;
+    min-height: 120px;
     padding: 14px 8px;
     background-color: transparent;
   }
@@ -1381,7 +1381,7 @@ main {
 .form-note {
   margin-top: 16px;
   font-size: 13px;
-  color: var(--centam-mint);
+  color: var(--error-red);
   letter-spacing: 0.05em;
   min-height: 18px;
 }

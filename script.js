@@ -322,7 +322,6 @@ function handleSubmit(e) {
 
     if (!name || !email || !message) {
       note.textContent = 'Please fill in name, email, and message.';
-      note.style.color = '#6A4D6A';
       return false;
     }
 
