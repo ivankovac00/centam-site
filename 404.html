@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <title>CENTAM | Page Not Found</title>
+    <meta name="robots" content="noindex" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Site styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      /* GitHub Pages serves this single root 404.html for every missing
+         URL on the site (including paths under /nl/), so language is
+         picked client-side from the broken URL rather than via a second
+         physical 404 page. */
+      .notfound-section {
+        min-height: calc(100vh - var(--nav-height));
+        display: flex;
+        align-items: center;
+      }
+      .notfound-code {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: clamp(72px, 14vw, 160px);
+        line-height: 1;
+        color: var(--centam-light-green);
+        letter-spacing: 2px;
+        margin: 0 0 8px;
+      }
+      .notfound-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+      }
+      [data-lang-content] {
+        display: none;
+      }
+      html[data-active-lang="en"] [data-lang-content="en"],
+      html[data-active-lang="nl"] [data-lang-content="nl"] {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+       SITE HEADER / NAVIGATION
+       ============================================================ -->
+    <header class="site-header">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img
+            src="https://centam.be/wp-content/uploads/2026/05/Centam_Logo_Hexagon_Name_Green_Maroon_300dpi.png"
+            alt="Ceramic Engineering Through Additive Manufacturing"
+          />
+        </a>
+        <nav class="nav-menu" id="primary-nav">
+          <a href="/" data-lang-content="en">Home</a>
+          <a href="/nl/" data-lang-content="nl">Home</a>
+          <a href="#" class="nav-lang-mobile js-lang-toggle" data-switch-to="nl">NL</a>
+        </nav>
+        <div class="nav-lang"><a href="#" class="js-lang-toggle" data-switch-to="en">EN</a><span class="nav-lang__divider">|</span><a href="#" class="js-lang-toggle" data-switch-to="nl">NL</a></div>
+        <button
+          class="nav-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="centam-hero notfound-section" id="hero">
+        <div class="img-hero"></div>
+        <div>
+          <div data-lang-content="en">
+            <div class="centam-eyebrow">Error 404</div>
+            <p class="notfound-code">404</p>
+            <h1>Page Not Found</h1>
+            <p>
+              The page you're looking for doesn't exist or may have been
+              moved. Let's get you back on track.
+            </p>
+            <div class="notfound-actions">
+              <a href="/" class="centam-button">Back To Home</a>
+              <a href="mailto:info@centam.be" class="centam-button centam-button-ghost" target="_blank" rel="noopener noreferrer">Contact Us</a>
+            </div>
+          </div>
+          <div data-lang-content="nl">
+            <div class="centam-eyebrow">Foutmelding 404</div>
+            <p class="notfound-code">404</p>
+            <h1>Pagina Niet Gevonden</h1>
+            <p>
+              De pagina die u zoekt bestaat niet (meer) of is verplaatst.
+              Laten we u terugbrengen naar de juiste plek.
+            </p>
+            <div class="notfound-actions">
+              <a href="/nl/" class="centam-button">Terug Naar Home</a>
+              <a href="mailto:info@centam.be" class="centam-button centam-button-ghost" target="_blank" rel="noopener noreferrer">Contacteer Ons</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+       SITE FOOTER
+       ============================================================ -->
+    <footer class="site-footer">
+      <div class="centam-container">
+        <div class="footer-grid">
+          <div>
+            <div class="nav-logo footer-logo footer-brand">
+              <img
+                src="https://centam.be/wp-content/uploads/2026/05/Centam_Logo_Hexagon_Name_White_300ppi.png"
+                alt="CENTAM"
+              />
+            </div>
+            <p class="footer-tagline" data-lang-content="en">
+              Ceramic Engineering Through Additive Manufacturing
+            </p>
+            <p class="footer-tagline" data-lang-content="nl">
+              Keramisch Ingenieurswerk via Additieve Productie
+            </p>
+          </div>
+          <div>
+            <h4 data-lang-content="en">Contact</h4>
+            <h4 data-lang-content="nl">Contact</h4>
+            <a href="mailto:info@centam.be" target="_blank" rel="noopener noreferrer">info@centam.be</a>
+            <a href="https://www.google.com/maps/place/Leuven/@50.88422,4.622966,12z/data=!3m1!4b1!4m6!3m5!1s0x47c160d05ebbdf85:0x40099ab2f4d5690!8m2!3d50.8791453!4d4.7024648!16zL20vMGs2YnQ?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Leuven, Belgium</a><a href="https://www.linkedin.com/company/centam-be" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+        <div class="footer-bottom">© 2026 CENTAM. All rights reserved.<br>VAT BE 1034583489</div>
+      </div>
+    </footer>
+
+    <!-- Site script: drives the mobile hamburger menu (.nav-toggle).
+         renderProjectCards()/renderNewsCards() no-op here since this
+         page has no #projects-grid/#news-grid elements. -->
+    <script src="script.js"></script>
+    <script>
+      // GitHub Pages always serves this root 404.html, even for missing
+      // /nl/* URLs, so pick the starting language from the broken path.
+      (function () {
+        var initialLang = location.pathname.indexOf("/nl/") !== -1 || location.pathname.indexOf("/nl") === location.pathname.length - 3
+          ? "nl"
+          : "en";
+        function setActive(lang) {
+          document.documentElement.setAttribute("data-active-lang", lang);
+          document.documentElement.lang = lang;
+          document.querySelectorAll(".js-lang-toggle").forEach(function (link) {
+            link.classList.toggle("nav-lang__active", link.getAttribute("data-switch-to") === lang);
+          });
+          var mobileLink = document.querySelector(".nav-lang-mobile.js-lang-toggle");
+          if (mobileLink) {
+            var otherLang = lang === "en" ? "nl" : "en";
+            mobileLink.setAttribute("data-switch-to", otherLang);
+            mobileLink.textContent = otherLang.toUpperCase();
+          }
+        }
+
+        setActive(initialLang);
+
+        document.querySelectorAll(".js-lang-toggle").forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            setActive(link.getAttribute("data-switch-to"));
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
