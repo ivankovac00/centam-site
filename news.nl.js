@@ -16,13 +16,13 @@ const newsArticles = [
     media: 'Afronding Eerste Kwartaal',
     mediaImage: '/assets/Centam_board.png',
     date: '18 juni 2026',
-    excerpt: 'Het is ons een genoegen om de afsluiting van CENTAM\'s eerste kwartaal als formeel opgericht bedrijf te markeren — een mijlpaal die de toewijding en expertise weerspiegelt die ons team gedurende vele jaren heeft geïnvesteerd.',
+    excerpt: 'Het is ons een groot genoegen CENTAM\'s eerste kwartaal als formeel opgericht bedrijf te vieren, een mijlpaal die de toewijding en expertise weerspiegelt die ons team gedurende vele jaren heeft geïnvesteerd.',
     body: [
-      'Het is ons een genoegen om de afsluiting van CENTAM\'s eerste kwartaal als formeel opgericht bedrijf te markeren — een mijlpaal die de toewijding en expertise weerspiegelt die ons team gedurende vele jaren heeft geïnvesteerd.',
-      'CENTAM werd opgericht door Berfu Göksel, Margherita Beretta, Mia Kovac, Sebastian Meyers en Waut Declercq, die samen diepgaande, gecombineerde ervaring meebrengen in additieve productie, geavanceerde keramiek en siliciumcarbideverwerking. Lang voordat het bedrijf bestond, hadden de oprichters al samengewerkt als collega\'s, onderzoekers en ingenieurs. Door voortdurende betrokkenheid bij de industrie identificeerden zij een terugkerende uitdaging: de vraag naar complexe SiSiC-componenten groeide gestaag, terwijl de productiemogelijkheden beperkt, kostbaar en grotendeels beperkt bleven door conventionele productiemethoden.',
-      'Die observatie werd de basis van CENTAM. Wat begon als gesprekken tussen vertrouwde collega\'s, evolueerde tot een gestructureerd businessplan, vroege klantcontacten, technische ontwikkeling en uiteindelijk de oprichting van het bedrijf.',
-      'Wij zijn dankbaar voor de steun van de programma\'s en organisaties die ons in deze eerste fase hebben begeleid, waaronder VLAIO, Start it KBC en SOKWADRAAT. Hun vertrouwen in onze visie is van onschatbare waarde geweest om dit punt te bereiken.',
-      'Wij kijken uit naar de komende kwartalen; verder bouwen, leren en de kans die wij zien in deze markt waarmaken.',
+      'Het is ons een groot genoegen CENTAM\'s eerste kwartaal als formeel opgericht bedrijf te vieren, een mijlpaal die de toewijding en expertise weerspiegelt die ons team gedurende vele jaren heeft geïnvesteerd.',
+      'CENTAM werd opgericht door Berfu Göksel, Margherita Beretta, Mia Kovac, Sebastian Meyers en Waut Declercq, die diepgaande ervaring samenbrengen in additieve productie, geavanceerde keramiek en siliciumcarbideverwerking. Lang voordat het bedrijf bestond, werkten de oprichters al samen als collega\'s, onderzoekers en ingenieurs. Door voortdurende wisselwerking met de industrie identificeerden zij een uitdaging die steeds terugkwam: de vraag naar complexe Si-SiC componenten groeide gestaag, terwijl de productiemogelijkheden traag, kostbaar en grotendeels beperkt bleven door conventionele productiemethoden.',
+      'Die observatie werd de basis van CENTAM. Wat begon als gesprekken tussen goede collega\'s, evolueerde tot een gestructureerd businessplan, vroege contacten met klanten, technische ontwikkeling en uiteindelijk de oprichting van het bedrijf.',
+      'Wij zijn dankbaar voor de steun van de programma\'s en organisaties die ons in deze eerste fase hebben begeleid, waaronder VLAIO, Start it KBC en SO KWADRAAT. Hun vertrouwen in onze visie is van onschatbare waarde geweest om dit CENTAM mogelijk te maken.',
+      'Wij kijken uit naar wat volgt; verder bouwen, meer bijleren en de kans die wij zien in deze markt waarmaken.',
     ]
   },
 ];
