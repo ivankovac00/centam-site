@@ -314,34 +314,34 @@ function initFadeIn() {
 }
 
 function handleSubmit(e) {
-    e.preventDefault();
-    var note = document.getElementById('form-note');
-    var name = document.getElementById('name').value.trim();
-    var email = document.getElementById('email').value.trim();
-    var message = document.getElementById('message').value.trim();
+  e.preventDefault();
+  var note = document.getElementById('form-note');
+  var name = document.getElementById('name').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var message = document.getElementById('message').value.trim();
 
-    if (!name || !email || !message) {
-      note.textContent = 'Please fill in name, email, and message.';
-      return false;
-    }
-
-    var subject = encodeURIComponent('CENTAM website contact — ' + name);
-    var body = encodeURIComponent(
-      'Name: ' + name + '\n' +
-      'Email: ' + email + '\n' +
-      'Company: ' + (document.getElementById('company').value.trim() || '—') + '\n\n' +
-      'Message:\n' + message
-    );
-    window.location.href = 'mailto:info@centam.be?subject=' + subject + '&body=' + body;
-
-    const isNl = window.location.pathname.includes('/nl/');
-
-    note.textContent = isNl
-      ? 'Uw e-mailclient wordt geopend... dank u.'
-      : 'Opening your email client... thank you.';
-    note.style.color = '#A9B7B4';
+  if (!name || !email || !message) {
+    note.textContent = 'Please fill in name, email, and message.';
     return false;
   }
+
+  var subject = encodeURIComponent('CENTAM website contact — ' + name);
+  var body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Company: ' + (document.getElementById('company').value.trim() || '—') + '\n\n' +
+    'Message:\n' + message
+  );
+  window.location.href = 'mailto:info@centam.be?subject=' + subject + '&body=' + body;
+
+  const isNl = window.location.pathname.includes('/nl/');
+
+  note.textContent = isNl
+    ? 'Uw e-mailclient wordt geopend... dank u.'
+    : 'Opening your email client... thank you.';
+  note.style.color = '#A9B7B4';
+  return false;
+}
 
 /* -------------------------------------------------------------
    Contact form.
@@ -352,29 +352,6 @@ function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
   form.addEventListener('submit', (event) => handleSubmit(event));
-}
-
-/* Ensure mailto: links open the user's mail client immediately on click.
-   Some browsers or setups may require explicit navigation; this helper
-   forces navigation while preserving modifier-clicks (open in new tab).
- */
-function initMailtoLinks() {
-  const mailtoLinks = document.querySelectorAll('a[href^="mailto:"]');
-  if (!mailtoLinks.length) return;
-  mailtoLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      // Respect modifier-clicks (open in new tab/window)
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      e.preventDefault();
-      // Try opening in a new window first — some embedded previews
-      // require an explicit external navigation to trigger the mail client.
-      const opened = window.open(link.href, '_blank');
-      if (!opened) {
-        // Fallback to location change if popup is blocked.
-        window.location.href = link.href;
-      }
-    });
-  });
 }
 
 /* -------------------------------------------------------------
@@ -452,7 +429,6 @@ function init() {
   renderNewsDetail();
   initFadeIn();
   initContactForm();
-  initMailtoLinks();
   initMobileNav();
 }
 
