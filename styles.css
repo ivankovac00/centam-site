@@ -1139,6 +1139,15 @@ main {
   }
 }
 
+/* About: main heading ("Team"). Uses <h2> so it shares the Projects &
+   Case Studies title's font family/size/weight for free, then just needs
+   centering — its text column is the same width as the body copy below,
+   so centering here lines it up with that text block, not the wider
+   viewport/container. */
+.about-heading {
+  text-align: center;
+}
+
 .values-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1261,6 +1270,14 @@ main {
 /* Centered maroon bar (overrides the default left-aligned bar) */
 .maroon-bar--center {
   margin: 0 auto 24px;
+}
+
+/* Centered eyebrow (overrides the default left-aligned, inline-block eyebrow).
+   Switches to block so text-align can center it in its own text column,
+   same mechanism as .about-heading below it. */
+.centam-eyebrow--center {
+  display: block;
+  text-align: center;
 }
 
 /* Card media area that bleeds to the card edges (image header) */
